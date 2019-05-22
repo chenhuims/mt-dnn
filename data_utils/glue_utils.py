@@ -110,8 +110,8 @@ def load_qnnli(file, label_dict, header=True, is_train=True):
         lines = f.readlines()
         if header: lines = lines[1:]
 
-        assert len(lines) % 2 == 0
-        for idx in range(0, len(lines), 2):
+        #assert len(lines) % 2 == 0
+        for idx in range(0, len(lines)-1, 2):
             block1 = lines[idx].strip().split('\t')
             block2 = lines[idx + 1].strip().split('\t')
             # train shuffle
@@ -119,7 +119,7 @@ def load_qnnli(file, label_dict, header=True, is_train=True):
             if is_train and block1[1] != block2[1]:
                 mis_matched_cnt += 1
                 continue
-            assert block1[1] == block2[1]
+            #assert block1[1] == block2[1]
             lab1, lab2 = 0, 0
             if is_train:
                 blocks = [block1, block2]

@@ -21,6 +21,15 @@ Improving Multi-Task Deep Neural Networks via Knowledge Distillation for Natural
 2. install requirements </br>
    ```> pip install -r requirements.txt```
 
+#### Install conda environment
+
+1. install mtdnn_env </br>
+   ```>conda env create -f mtdnn_env.yml```
+
+2. activate the environment </br>
+  ```>conda activate mtdnn```
+
+
 #### Use docker:
 1. Pull docker </br>
    ```> docker pull allenlao/pytorch-mt-dnn:v0.1```
@@ -47,7 +56,9 @@ Improving Multi-Task Deep Neural Networks via Knowledge Distillation for Natural
 **Note that we ran this experiment on 8 V100 GPUs (32G) with a batch size of 32.**
    + Preprocess GLUE data via the aforementioned script
    + Training: </br>
-   ```>scripts\run_mt_dnn.sh```
+   ```>cd scripts``` </br>
+   ```>sh run_mt_dnn.sh <batch_size> <gpu>``` </br>
+   where ```<batch_size>``` is the batch size (e.g., '16') and ```<gpu>``` is the gpu id  (e.g., '0,1,2,3'). Note that you may need to use a small batch size to avoid CUDA to be out of memory. 
 
 2. Finetuning: finetune MT-DNN to each of the GLUE tasks to get task-specific models. </br>
 Here, we provide two examples, STS-B and RTE. You can use similar scripts to finetune all the GLUE tasks. </br>
